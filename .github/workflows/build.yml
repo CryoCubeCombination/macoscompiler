@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11.9'
+        python-version: '3.11.9' # Your preferred version
         cache: 'pip'
 
     - name: Install dependencies
@@ -29,18 +29,22 @@ jobs:
       with:
         nuitka-version: main
         script-name: main.py
-        onefile: true
-        # Hides the terminal window on launch
+        # FIX: "app" replaces both "onefile: true" and "macos-create-app-bundle: true"
+        mode: app
         disable-console: true
-        # Creates a standard macOS .app bundle instead of a command-line binary
-        macos-create-app-bundle: true
         include-data-file: |
           *.png=.
           *.jpg=.
           *.jpeg=.
 
-    # macOS .app structures are folders. We zip it so GitHub can upload it cleanly.
     - name: Zip App Bundle
       run: |
         cd build
         zip -r ../main_macos.zip main.app
+
+    - name: Upload macOS App
+      uses: actions/upload-artifact@v4
+      with:
+        name: macos-app
+        path: main_macos.zip
+
