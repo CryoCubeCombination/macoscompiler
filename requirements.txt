@@ -1,0 +1,3 @@
+mcstatus==14.0.0
+Pillow==12.3.0
+python-aternos==3.0.6
