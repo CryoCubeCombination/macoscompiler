@@ -34,8 +34,6 @@ jobs:
         # FIX: Appended a trailing slash (./) to indicate a destination directory
         include-data-file: |
           *.png=./
-          *.jpg=./
-          *.jpeg=./
 
     - name: Zip App Bundle
       run: |
