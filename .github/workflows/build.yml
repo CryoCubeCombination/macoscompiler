@@ -38,7 +38,7 @@ jobs:
     - name: Zip App Bundle
       run: |
         cd build
-        zip -r ../main_macos.zip main.app
+        zip -r ../activator_macos.zip activator.app
 
     - name: Upload macOS App
       uses: actions/upload-artifact@v4
