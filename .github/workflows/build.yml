@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11.9' # Your preferred version
+        python-version: '3.11.9' 
         cache: 'pip'
 
     - name: Install dependencies
@@ -29,13 +29,13 @@ jobs:
       with:
         nuitka-version: main
         script-name: main.py
-        # FIX: "app" replaces both "onefile: true" and "macos-create-app-bundle: true"
         mode: app
         disable-console: true
+        # FIX: Appended a trailing slash (./) to indicate a destination directory
         include-data-file: |
-          *.png=.
-          *.jpg=.
-          *.jpeg=.
+          *.png=./
+          *.jpg=./
+          *.jpeg=./
 
     - name: Zip App Bundle
       run: |
@@ -47,4 +47,3 @@ jobs:
       with:
         name: macos-app
         path: main_macos.zip
-
