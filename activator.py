@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import os
 from mcstatus import JavaServer
 import time
+import sys
 
 server = JavaServer.lookup("absolutewonderland.aternos.me:19578")  
 
@@ -13,7 +14,10 @@ root.title("Starter")
 root.geometry("350x300")
 root.resizable(False, False)
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False):
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(sys.argv[0]))
+else:
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE1PRERESIZE = os.path.join(SCRIPT_DIR, "aternosbutton1.png")
 IMAGE2PRERESIZE = os.path.join(SCRIPT_DIR, "aternosbutton2.png")
 
