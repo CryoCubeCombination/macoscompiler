@@ -30,7 +30,7 @@ jobs:
         nuitka-version: main
         script-name: activator.py # Your exact script name
         mode: app
-        disable-console: true
+        windows-console-mode: false
         include-data-files: |
           *.png=./
         enable-plugins: |
