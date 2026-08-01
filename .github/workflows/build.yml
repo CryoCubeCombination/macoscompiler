@@ -33,10 +33,13 @@ jobs:
         disable-console: true
         include-data-files: |
           *.png=./
-
+    
     - name: Zip App Bundle
       run: |
-        zip -r main_macos.zip *.app
+        cd build
+        # This matches activator.app or Activator.app perfectly, ignoring the build cache folder
+        zip -r ../main_macos.zip [aA]ctivator.app
+
 
     - name: Upload macOS App
       uses: actions/upload-artifact@v4
