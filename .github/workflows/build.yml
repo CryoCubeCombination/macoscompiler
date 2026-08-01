@@ -33,6 +33,7 @@ jobs:
         disable-console: true
         include-data-files: |
           *.png=./
+        enable-plugin=tk-inter: true
     
     - name: Zip App Bundle
       run: |
