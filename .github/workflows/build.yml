@@ -29,7 +29,7 @@ jobs:
       with:
         nuitka-version: main
         script-name: activator.py # Your exact script name
-        mode: exe
+        mode: onefile
         windows-console-mode: |
           disable
         include-data-files: |
