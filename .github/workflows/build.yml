@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11.9' 
+        python-version: '3.11.9' # Your exact Python version
         cache: 'pip'
 
     - name: Install dependencies
@@ -28,17 +28,15 @@ jobs:
       uses: Nuitka/Nuitka-Action@main
       with:
         nuitka-version: main
-        script-name: activator.py
+        script-name: activator.py # Your exact script name
         mode: app
         disable-console: true
-        # FIX: Appended a trailing slash (./) to indicate a destination directory
         include-data-file: |
           *.png=./
 
     - name: Zip App Bundle
       run: |
-        cd build
-        zip -r ../activator_macos.zip activator.app
+        zip -r main_macos.zip *.app
 
     - name: Upload macOS App
       uses: actions/upload-artifact@v4
