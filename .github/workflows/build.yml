@@ -29,7 +29,7 @@ jobs:
       with:
         nuitka-version: main
         script-name: activator.py # Your exact script name
-        mode: app
+        mode: exe
         windows-console-mode: |
           disable
         include-data-files: |
@@ -41,11 +41,10 @@ jobs:
       run: |
         cd build
         # This matches activator.app or Activator.app perfectly, ignoring the build cache folder
-        zip -r ../main_macos.zip [aA]ctivator.app
-
+        zip -r ../main_windows.zip [aA]ctivator.exe
 
     - name: Upload macOS App
       uses: actions/upload-artifact@v4
       with:
-        name: macos-app
-        path: main_macos.zip
+        name: windows-activator
+        path: main_windows.zip
