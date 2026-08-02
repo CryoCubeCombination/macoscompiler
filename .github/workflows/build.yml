@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-windows:
-    runs-on: windows-latest # Switches the runner to a Windows server
+    runs-on: windows-latest
 
     steps:
     - name: Check out repository
@@ -29,21 +29,15 @@ jobs:
       with:
         nuitka-version: main
         script-name: activator.py
-        onefile: true # Bundles everything into an execution folder
-        windows-console-mode: disable # Hides the black command prompt window on launch
-        enable-plugins: |
-          tk-inter
+        # CORRECCIÓN: Usamos 'onefile' directamente en el parámetro 'mode' que sí es válido
+        mode: onefile
+        windows-console-mode: disable
         include-data-files: |
           *.png=./
 
-    # FIX: Uses Windows PowerShell to safely compress the build folder into a standard .zip file
-    - name: Zip App Bundle (PowerShell)
-      shell: powershell
-      run: |
-        Compress-Archive -Path "build/activator.dist/*" -DestinationPath "main_windows.zip" -Force
-
+    # CORRECCIÓN: Usamos el comodín *.exe para que capture el archivo sin importar las mayúsculas
     - name: Upload Windows App
       uses: actions/upload-artifact@v4
       with:
         name: windows-app
-        path: main_windows.zip
+        path: build/*.exe
