@@ -30,7 +30,7 @@ jobs:
         nuitka-version: main
         script-name: activator.py
         mode: onefile # Bundles everything into an execution folder
-        disable-console: true # Hides the black command prompt window on launch
+        windows-console-mode: disable # Hides the black command prompt window on launch
         enable-plugins: |
           tk-inter
         include-data-files: |
