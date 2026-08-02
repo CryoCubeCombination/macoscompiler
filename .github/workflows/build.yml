@@ -1,4 +1,4 @@
-name: Build macOS App with Nuitka
+name: Build Windows App with Nuitka
 
 on:
   push:
@@ -40,9 +40,10 @@ jobs:
       run: |
         cd build
         # This matches activator.app or Activator.app perfectly, ignoring the build cache folder
-        zip -r ../main_windows.zip [aA]ctivator.exe
+        Get-Item -Path "Activator.exe", "activator.exe" -ErrorAction SilentlyContinue | Compress-Archive -DestinationPath "..\main_windows.zip"
 
-    - name: Upload macOS App
+
+    - name: Upload Windows App
       uses: actions/upload-artifact@v4
       with:
         name: windows-activator
